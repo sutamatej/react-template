@@ -1,0 +1,26 @@
+{
+  "name": "react-template",
+  "version": "0.0.1",
+  "description": "Template for creating standalone React applications with Typescript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node build.dev.mjs",
+    "typecheck": "npx tsc --noEmit",
+    "test": "ts-node  node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jasmine": "5.1.4",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "esbuild": "0.21.4",
+    "jasmine": "5.1.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
