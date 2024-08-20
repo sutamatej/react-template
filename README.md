@@ -19,14 +19,14 @@ Using React without a framework is [no longer a practice recommended by the Reac
 However, you might still want to keep things simple without being dependent on a third party framework.
 If that is the case, then this repository might be a good place to start.
 
-Secondly, I wanted to find out myself if all these tools could work together well to provide a productive developer
-experience that stays out of my way.
+Secondly, I wanted to have a project built with React and Typescript with blazing fast build times and
+I wanted to find out if all these tools could work together well to provide a productive developer experience.
 
 ## Goals
 * always up-to-date
 * minimize the number of dependencies
-* configuration that easy to understand, modify and experiment with, therefore easy to learn
-* extremely fast build thanks to [esbuild](https://esbuild.github.io/)
+* configuration that is easy to understand, modify and experiment with, therefore easy to learn
+* extremely fast builds thanks to [esbuild](https://esbuild.github.io/)
 * [React](https://react.dev/) & [Typescript](https://www.typescriptlang.org/) support
 * live reloading (NOT hot reloading)
 
