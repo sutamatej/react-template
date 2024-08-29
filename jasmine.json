@@ -4,6 +4,7 @@
     "**/*[sS]pec.?(m)js",
     "**/*[sS]pec.ts?(x)"
   ],
+  "helpers": ["_jasmineSetup/**/*.mjs"],
   "env": {
     "stopSpecOnExpectationFailure": false,
     "random": true

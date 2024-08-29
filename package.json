@@ -6,16 +6,19 @@
   "scripts": {
     "dev": "node build.dev.mjs",
     "typecheck": "npx tsc --noEmit",
-    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "jasmine --config=jasmine.json"
   },
   "author": "Matej Suta",
   "license": "MIT",
   "devDependencies": {
+    "@testing-library/react": "16.0.1",
+    "@testing-library/user-event": "14.5.2",
     "@types/jasmine": "5.1.4",
     "@types/react": "18.3.4",
     "@types/react-dom": "18.3.0",
     "esbuild": "0.23.1",
     "jasmine": "5.2.0",
+    "jsdom": "25.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
   },
