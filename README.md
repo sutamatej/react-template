@@ -29,7 +29,7 @@ I wanted to find out if all these tools could work together well to provide a pr
 * extremely fast builds thanks to [esbuild](https://esbuild.github.io/)
 * [React](https://react.dev/) & [Typescript](https://www.typescriptlang.org/) support
 * live reloading (NOT hot reloading)
+* testing leveraging [Jasmine](https://jasmine.github.io/pages/docs_home.html) and the [Testing Library](https://testing-library.com/docs/)
 
 ## Missing features
-* Unit testing of components with Jest or react-testing-library
 * Production builds with minification/bundling/lazy loading/...
