@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "node build.dev.mjs",
     "typecheck": "npx tsc --noEmit",
-    "test": "ts-node  node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
+    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=jasmine.json"
   },
-  "author": "",
+  "author": "Matej Suta",
   "license": "MIT",
   "devDependencies": {
     "@types/jasmine": "5.1.4",
@@ -17,7 +17,7 @@
     "esbuild": "0.23.1",
     "jasmine": "5.2.0",
     "ts-node": "10.9.2",
-    "typescript": " 5.5.4"
+    "typescript": "5.5.4"
   },
   "dependencies": {
     "react": "18.3.1",
