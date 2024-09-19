@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/App.css"],
-  "sourcesContent": [".status {\n  color: royalblue;\n}\n"],
-  "mappings": ";AAAA,CAAC;AACC,SAAO;AACT;",
-  "names": []
-}
