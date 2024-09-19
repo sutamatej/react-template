@@ -4,7 +4,7 @@ import { spawn } from 'child_process'
 let buildContext = await esbuild.context({
   entryPoints: ['./src/index.tsx'],
   bundle: true,
-  outdir: 'public/js',
+  outdir: 'public/assets',
   tsconfig: 'tsconfig.json',
   sourcemap: true,
 }).catch(() => process.exit(1))
