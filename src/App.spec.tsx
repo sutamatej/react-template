@@ -12,6 +12,6 @@ describe('App', () => {
     await user.click(button);
 
     const result = screen.getByText(/clicked 1 times/i);
-    expect(result).toBeTruthy();
+    expect(result).toBeInTheDocument();
   });
 });
