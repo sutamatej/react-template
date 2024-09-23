@@ -6,13 +6,13 @@ export function useTranslations() {
 
   useEffect(() => {
     async function fetchTranslations() {
-      const response = await fetch('assets/locale/en-us.json');
-      const t = await response.json()
-      setTranslations(t);
+      // @ts-ignore
+      const translations = await import('./locale/en-us.js');
+      setTranslations(translations.default);
     }
 
     void fetchTranslations();
-  }, [])
+  }, []);
 
   return translations;
 }
