@@ -1,3 +1,6 @@
 {
-  "buttonLabel": "Click me"
+  "buttonLabel": "Click me",
+  "status": {
+    "label": "Clicked {count} times"
+  }
 }

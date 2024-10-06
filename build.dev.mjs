@@ -11,7 +11,7 @@ let buildContext = await esbuild.context({
   outdir: 'public/assets',
   tsconfig: 'tsconfig.json',
   sourcemap: true,
-  external: ['./locale/en-us.js', './locale/en-us.json'],
+  external: ['./locale/*'],
   format: 'esm'
 }).catch(() => process.exit(1))
 

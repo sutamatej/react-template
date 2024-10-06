@@ -10,8 +10,8 @@ export function App() {
 
   return (
     <>
-      <button onClick={() => setClickedTimes(increment)}>{t?.buttonLabel}</button>
-      <div className="status">Clicked {clickedTimes} times</div>
+      <button onClick={() => setClickedTimes(increment)}>{t('buttonLabel')}</button>
+      <div className="status">{t('status.label', clickedTimes)}</div>
     </>
   );
 }
