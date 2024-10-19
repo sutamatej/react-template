@@ -4,8 +4,7 @@ import { default as TranslationsJson } from './locale/en-us.json';
 
 // https://dev.to/pffigueiredo/typescript-utility-keyof-nested-object-2pa3#comment-268bd
 type PathOf<T, K = keyof T> = K extends keyof T & string
-  ? (T[K] extends object ? `${K}.${PathOf<T[K]>}` : never) |
-    (T[K] extends object ? never : `${K}`)
+  ? (T[K] extends object ? `${K}.${PathOf<T[K]>}` : `${K}`)
   : never;
 
 type RecursiveKeyOf<T, K = keyof T> = K extends keyof T & string
@@ -48,14 +47,14 @@ export function useTranslations() {
 
     let index = 0;
     const translation = getTranslation(translations, key);
-    return translation.replace(/{(\w+)}/g, (_) => {
+    return translation.replace(/{(\w+)}/g, (match) => {
       const replacement = args[index++];
       if (replacement !== undefined) {
         return replacement.toString();
       }
 
       console.error('Failed to format translation string', key, translation, args)
-      return _;
+      return match;
     });
   }, [translations]);
 }
