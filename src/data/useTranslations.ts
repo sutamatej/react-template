@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { default as TranslationsJson } from './locale/en-us.json';
 
-// https://dev.to/pffigueiredo/typescript-utility-keyof-nested-object-2pa3#comment-268bd
 type PathOf<T, K = keyof T> = K extends keyof T & string
   ? (T[K] extends object ? `${K}.${PathOf<T[K]>}` : `${K}`)
   : never;
@@ -11,30 +10,35 @@ type RecursiveKeyOf<T, K = keyof T> = K extends keyof T & string
   ? `${K}` | (T[K] extends object ? `${RecursiveKeyOf<T[K]>}` : never)
   : never
 
-type TranslationPath = PathOf<typeof TranslationsJson>;
-type TranslationKey = RecursiveKeyOf<typeof TranslationsJson>;
+type Translations = typeof TranslationsJson;
+type TranslationPath = PathOf<Translations>;
+type TranslationKey = RecursiveKeyOf<Translations>;
 
-// https://stackoverflow.com/questions/47914536/use-partial-in-nested-property-with-typescript
-// https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript
-type RecursivePartial<T> = {
-  [P in keyof T]?: RecursivePartial<T[P]>;
-};
+type PartialTranslation = {
+  [key in TranslationKey]: string | PartialTranslation;
+}
 
-type PartialTranslationsJson = RecursivePartial<typeof TranslationsJson>;
+function getTranslation(translations: Translations, selector: TranslationPath): string | undefined {
+  const translationKeys = selector.split('.') as TranslationKey[];
+  const translation = translationKeys.reduce<PartialTranslation | string | undefined>((acc, key) => {
+    if (acc && typeof acc === 'object' && key in acc) {
+      return acc[key]
+    }
 
-function getTranslation(translations: typeof TranslationsJson, selector: TranslationPath): string {
-  // @ts-ignore
-  return selector.split('.').reduce((obj: PartialTranslationsJson, key: TranslationKey) => obj[key], translations);
+    return undefined;
+  }, translations as PartialTranslation);
+
+  return typeof translation === 'string' ? translation : undefined;
 }
 
 export function useTranslations() {
-  const [translations, setTranslations] = useState<typeof TranslationsJson>();
+  const [translations, setTranslations] = useState<Translations>();
 
   useEffect(() => {
     async function fetchTranslations() {
       // @ts-ignore
       const translations = await import('./locale/en-us.js');
-      setTranslations(translations.default as typeof TranslationsJson);
+      setTranslations(translations.default as Translations);
     }
 
     void fetchTranslations();
@@ -45,8 +49,12 @@ export function useTranslations() {
       return key;
     }
 
-    let index = 0;
     const translation = getTranslation(translations, key);
+    if (!translation) {
+      return key;
+    }
+
+    let index = 0;
     return translation.replace(/{(\w+)}/g, (match) => {
       const replacement = args[index++];
       if (replacement !== undefined) {
