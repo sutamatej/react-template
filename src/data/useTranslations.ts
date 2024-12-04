@@ -16,7 +16,7 @@ type TranslationKey = RecursiveKeyOf<Translations>;
 
 type PartialTranslation = {
   [key in TranslationKey]: string | PartialTranslation;
-}
+};
 
 function getTranslation(translations: Translations, selector: TranslationPath): string | undefined {
   const translationKeys = selector.split('.') as TranslationKey[];

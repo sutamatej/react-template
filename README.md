@@ -15,7 +15,7 @@ Go to http://localhost:8000/ to see the template application.
 Create your components, build your application, conquer the world.
 
 ## Why
-Using React without a framework is [no longer a practice recommended by the React team](https://react.dev/learn/start-a-new-react-project).
+Using React without a framework is [no longer a practice recommended by the React team](https://react.dev/learn/start-a-new-react-project#can-i-use-react-without-a-framework).
 However, you might still want to keep things simple without being dependent on a third party framework.
 If that is the case, then this repository might be a good place to start.
 
