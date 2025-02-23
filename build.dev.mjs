@@ -17,11 +17,12 @@ let buildContext = await esbuild.context({
 
 await buildContext.watch()
 
-let { host, port } = await buildContext.serve({
+let { hosts, port } = await buildContext.serve({
   servedir: 'public',
 })
 
-console.log(`Serving the app at ${host}:${port}`)
+// @FIXME - hosts is hardcoded to the first
+console.log(`Serving the app at ${hosts[0]}:${port}`)
 
 const typecheck = spawn('npx',
   ['tsc', '--watch', '--pretty', '--noEmit', '--preserveWatchOutput'], {
