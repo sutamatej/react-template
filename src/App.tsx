@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { increment } from './increment';
 import { useTranslations } from './data/useTranslations';
 
-import './App.css';
+import { status } from './App.module.css';
 
 export function App() {
   const [clickedTimes, setClickedTimes] = useState(0);
@@ -11,7 +11,7 @@ export function App() {
   return (
     <>
       <button onClick={() => setClickedTimes(increment)}>{t('buttonLabel')}</button>
-      <div className="status">{t('status.label', clickedTimes)}</div>
+      <div className={status}>{t('status.label', clickedTimes)}</div>
     </>
   );
 }
