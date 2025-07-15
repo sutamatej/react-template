@@ -7,6 +7,7 @@ and React. How?
 git clone https://github.com/sutamatej/react-template.git
 cd react-template
 npm install
+npm run validate
 npm run dev
 ```
 
@@ -30,6 +31,7 @@ I wanted to find out if all these tools could work together well to provide a pr
 * [React](https://react.dev/) & [Typescript](https://www.typescriptlang.org/) support
 * live reloading (NOT hot reloading)
 * testing leveraging [Jasmine](https://jasmine.github.io/pages/docs_home.html) and the [Testing Library](https://testing-library.com/docs/)
+* linting using [oxlint](https://oxc.rs/docs/guide/usage/linter.html)
 
 ## Missing features
 * Production builds with minification/bundling/lazy loading/...

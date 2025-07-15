@@ -36,7 +36,7 @@ export function useTranslations() {
 
   useEffect(() => {
     async function fetchTranslations() {
-      // @ts-ignore
+      // @ts-expect-error: We're importing a file that only exists after build/at runtime
       const translations = await import('./locale/en-us.js');
       setTranslations(translations.default as Translations);
     }
