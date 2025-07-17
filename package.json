@@ -24,7 +24,7 @@
     "esbuild": "0.25.6",
     "jasmine": "5.8.0",
     "jsdom": "26.1.0",
-    "oxlint": "1.6.0",
+    "oxlint": "1.7.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   },
