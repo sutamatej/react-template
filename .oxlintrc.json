@@ -1,3 +1,40 @@
 {
-  "plugins": ["typescript", "react", "react-perf", "jsx-a11y", "promise", "import"]
+  "categories": {
+    "correctness": "error",
+    "pedantic": "warn",
+    "perf": "error",
+    "restriction": "warn",
+    "style": "warn",
+    "suspicious": "warn"
+  },
+  "plugins": ["import", "jsx-a11y", "promise", "react", "react-perf", "typescript"],
+  "rules": {
+    "func-style": "off",
+    "group-exports": "off",
+    "id-length": "off",
+    "jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }],
+    "no-plusplus": "off",
+    "no-ternary": "off",
+    "no-void": ["warn", { "allowAsStatement": true }],
+    "prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "sort-imports": ["warn", { "allowSeparatedGroups": true }],
+    "typescript/explicit-function-return-type": ["warn", { "allowTypedFunctionExpressions": true }],
+    "yoda": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.*"],
+      "rules": {
+        "no-magic-numbers": "off",
+        "no-namespace": "off"
+      }
+    },
+    {
+      "files": ["src/types.ts"],
+      "rules": {
+        "import/unambiguous": "off"
+      }
+    }
+  ]
 }

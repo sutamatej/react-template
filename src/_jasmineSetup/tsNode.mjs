@@ -1,10 +1,10 @@
-import * as TSNode from 'ts-node'
 import Module from 'module'
+import { register } from 'ts-node'
 
-TSNode.register({
+register({
+  files: true,
   project: './tsconfig.json',
-  files: true
 })
 
 // ignore CSS file imports for tests
-Module._extensions['.css'] = () => undefined
+Module._extensions['.css'] = () => null

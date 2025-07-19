@@ -11,9 +11,11 @@ interface Failure<TError> {
 type Result<T, TError = Error> = Success<T> | Failure<TError>;
 
 export function trySync<T, TError = Error>(
+  // oxlint-disable-next-line eslint-plugin-promise/prefer-await-to-callbacks
   callback: () => T
 ): Result<T, TError> {
   try {
+    // oxlint-disable-next-line eslint-plugin-promise/prefer-await-to-callbacks
     const data = callback();
     return { data, error: null };
   } catch (error) {
