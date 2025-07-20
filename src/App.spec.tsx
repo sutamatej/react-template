@@ -15,10 +15,10 @@ describe('App', () => {
     const user = userEvent.setup();
 
     render(<App />);
-    const button = screen.getByRole('button', { name: /buttonLabel/i });
+    const button = screen.getByRole('button', { name: /buttonLabel.text/i });
     await user.click(button);
 
-    const result = screen.getByText(/status.label 1/i);
+    const result = screen.getByText(/status.label.text 1/i);
     expect(result).toBeInTheDocument();
   });
 });

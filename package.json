@@ -9,7 +9,8 @@
     "lint:fix": "oxlint --fix",
     "test": "jasmine --config=jasmine.json",
     "typecheck": "npx tsc --noEmit",
-    "validate": "npm run typecheck && npm run test && npm run lint"
+    "validate": "npm run typecheck && npm run validate:translations && npm run test && npm run lint",
+    "validate:translations": "node ./src/data/locale/validate.mjs"
   },
   "author": "Matej Suta",
   "license": "MIT",
@@ -26,7 +27,8 @@
     "jsdom": "26.1.0",
     "oxlint": "1.7.0",
     "ts-node": "10.9.2",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "zod": "4.0.5"
   },
   "dependencies": {
     "react": "19.1.0",

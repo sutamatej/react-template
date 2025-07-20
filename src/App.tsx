@@ -1,4 +1,4 @@
-// oxlint currently doesn't allow separate type imports, see:
+// oxlint currently doesn't allow separated type imports, see:
 // https://github.com/oxc-project/oxc/issues/11987
 // https://github.com/oxc-project/oxc/issues/11660
 // https://eslint.org/docs/latest/rules/no-duplicate-imports#allowseparatetypeimports
@@ -21,8 +21,8 @@ export function App(): ReactElement {
 
   return (
     <>
-      <button type="button" onClick={onClick}>{t('buttonLabel')}</button>
-      <div className={status}>{t('status.label', clickedTimes)}</div>
+      <button type="button" onClick={onClick}>{t('buttonLabel.text')}</button>
+      <div className={status}>{t('status.label.text', clickedTimes)}</div>
     </>
   );
 }

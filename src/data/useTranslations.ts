@@ -13,7 +13,7 @@ type RecursiveKeyOf<T, K = keyof T> = K extends keyof T & string
   : never
 
 type Translations = typeof TranslationsJson;
-type TranslationPath = PathOf<Translations>;
+type TranslationPath = Extract<PathOf<Translations>, `${string}.text`>;
 type TranslationKey = RecursiveKeyOf<Translations>;
 
 type PartialTranslation = {

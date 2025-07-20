@@ -1,6 +1,12 @@
 {
-  "buttonLabel": "Click me",
+  "buttonLabel": {
+    "comment": "A label for a button",
+    "text": "Click me"
+  },
   "status": {
-    "label": "Clicked {count} times"
+    "label": {
+      "comment": "A status label",
+      "text": "Clicked {count} times"
+    }
   }
 }
