@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node build.dev.mjs",
+    "first": "node _first.mjs",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "test": "jasmine --config=jasmine.json",

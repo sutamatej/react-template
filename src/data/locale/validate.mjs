@@ -1,5 +1,5 @@
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath } from 'node:url'
 import { readFileSync } from 'node:fs'
 import { z } from 'zod'
 
