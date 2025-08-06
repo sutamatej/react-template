@@ -24,23 +24,36 @@ function updateBuildScripts({ main }) {
   }
 
   const content = readFileSync('build.dev.mjs', 'utf8')
-  // TODO this is not working all that well because package.json contains
-  // index.js so we have to strip the .js suffix or something
   const updated = content.replace(/'index'/g, `'${main}'`)
   writeFileSync('build.dev.mjs', updated)
 }
 
 function updateIndexHtml({ name, main }) {
-  // TODO this is not great, we need to treat main and name individually
   if (!main && !name) {
     return
   }
 
-  const content = readFileSync('public/index.html', 'utf8')
-  let updated = content.replace(/index\.css/g, `${main}.css`)
-  updated = updated.replace(/index\.js/g, `${main}.js`)
-  updated = updated.replace(/React Template App/g, `${name}`)
-  writeFileSync('public/index.html', updated)
+  let fileContent = readFileSync('public/index.html', 'utf8')
+  if (main) {
+    fileContent = fileContent.replace(/index\.css/g, `${main}.css`)
+    fileContent = fileContent.replace(/index\.js/g, `${main}.js`)
+  }
+
+  if (name) {
+    fileContent = fileContent.replace(/React Template App/g, `${name}`)
+  }
+
+  writeFileSync('public/index.html', fileContent)
+}
+
+function removeSuffixes(input, suffixes) {
+  return suffixes.reduce((result, suffix) => {
+    const suffixIndex = result.indexOf(suffix)
+    if (suffixIndex !== -1) {
+      return result.substring(0, suffixIndex)
+    }
+    return result
+  }, input)
 }
 
 async function populateCustomization(packageJson) {
@@ -48,7 +61,7 @@ async function populateCustomization(packageJson) {
   const name = await rl.question(`Package name: (${packageJson.name}) `)
   const version = await rl.question(`Package version: (${packageJson.version}) `)
   const description = await rl.question(`Package description: (${packageJson.description}) `)
-  const main = await rl.question(`Package main file name: (${packageJson.main}) `)
+  const mainWithSuffix = await rl.question(`Package main file name: (${packageJson.main}) `)
   const author = await rl.question(`Package author: (${packageJson.author}) `)
   const license = await rl.question(`Package license: (${packageJson.license}) `)
   rl.close()
@@ -57,7 +70,7 @@ async function populateCustomization(packageJson) {
     author,
     description,
     license,
-    main,
+    main: removeSuffixes(mainWithSuffix, ['.js', '.jsx', '.ts', '.tsx']),
     name,
     version,
   }
