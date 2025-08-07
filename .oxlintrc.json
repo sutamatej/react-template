@@ -13,6 +13,7 @@
     "group-exports": "off",
     "id-length": "off",
     "jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }],
+    "no-magic-numbers": "off",
     "no-plusplus": "off",
     "no-ternary": "off",
     "no-void": ["warn", { "allowAsStatement": true }],
@@ -26,7 +27,6 @@
     {
       "files": ["**/*.spec.*"],
       "rules": {
-        "no-magic-numbers": "off",
         "no-namespace": "off"
       }
     },

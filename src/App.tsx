@@ -9,10 +9,8 @@ import type { ReactElement } from 'react';
 import { status } from './App.module.css';
 import { useTranslations } from './data/useTranslations';
 
-const INITIAL_CLICKS = 0;
-
 export function App(): ReactElement {
-  const [clickedTimes, setClickedTimes] = useState(INITIAL_CLICKS);
+  const [clickedTimes, setClickedTimes] = useState(0);
   const t = useTranslations();
 
   const onClick = useCallback(() => {
