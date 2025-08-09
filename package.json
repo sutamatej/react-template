@@ -26,10 +26,10 @@
     "esbuild": "0.25.8",
     "jasmine": "5.9.0",
     "jsdom": "26.1.0",
-    "oxlint": "1.11.0",
+    "oxlint": "1.11.1",
     "ts-node": "10.9.2",
     "typescript": "5.9.2",
-    "zod": "4.0.15"
+    "zod": "4.0.16"
   },
   "dependencies": {
     "react": "19.1.1",
