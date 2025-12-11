@@ -20,7 +20,7 @@ Using React without a framework is [no longer a practice recommended by the Reac
 However, you might still want to keep things simple without being dependent on a third party framework.
 If that is the case, then this repository might be a good place to start.
 
-Secondly, I wanted to have a project built with React and Typescript with blazing fast build times and
+Secondly, I wanted to have a project built with React and Typescript with fast build times and
 I wanted to find out if all these tools could work together well to provide a productive developer experience.
 
 ## Goals
@@ -30,7 +30,7 @@ I wanted to find out if all these tools could work together well to provide a pr
 * extremely fast builds thanks to [esbuild](https://esbuild.github.io/)
 * [React](https://react.dev/) & [Typescript](https://www.typescriptlang.org/) support
 * live reloading (NOT hot reloading)
-* testing leveraging [Jasmine](https://jasmine.github.io/pages/docs_home.html) and the [Testing Library](https://testing-library.com/docs/)
+* testing leveraging [native Node.js test runner](https://nodejs.org/api/test.html)
 * linting using [oxlint](https://oxc.rs/docs/guide/usage/linter.html)
 
 ## Missing features
