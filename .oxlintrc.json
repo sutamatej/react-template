@@ -1,40 +1,12 @@
 {
   "categories": {
     "correctness": "error",
-    "pedantic": "warn",
     "perf": "error",
-    "restriction": "warn",
-    "style": "warn",
     "suspicious": "warn"
   },
-  "plugins": ["jsx-a11y", "promise", "react", "react-perf", "typescript"],
+  "plugins": ["eslint", "jsx-a11y", "promise", "react", "react-perf", "typescript"],
   "rules": {
-    "func-style": "off",
-    "group-exports": "off",
-    "id-length": "off",
-    "jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }],
-    "no-magic-numbers": "off",
-    "no-plusplus": "off",
-    "no-ternary": "off",
-    "no-void": ["warn", { "allowAsStatement": true }],
-    "prefer-default-export": "off",
-    "react/react-in-jsx-scope": "off",
-    "sort-imports": ["warn", { "allowSeparatedGroups": true }],
-    "typescript/explicit-function-return-type": ["warn", { "allowTypedFunctionExpressions": true }],
-    "yoda": "off"
+    "react/react-in-jsx-scope": "off"
   },
-  "overrides": [
-    {
-      "files": ["**/*.spec.*"],
-      "rules": {
-        "no-namespace": "off"
-      }
-    },
-    {
-      "files": ["src/types.ts"],
-      "rules": {
-        "import/unambiguous": "off"
-      }
-    }
-  ]
+  "overrides": []
 }
