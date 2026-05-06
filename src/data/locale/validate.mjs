@@ -9,8 +9,9 @@ const Leaf = z.strictObject({
 })
 
 const Tree = z.lazy(() => z.record(z.string(), z.union([Leaf, Tree])))
-
+// oxlint-disable-next-line eslint/no-underscore-dangle
 const __filename = fileURLToPath(import.meta.url)
+// oxlint-disable-next-line eslint/no-underscore-dangle
 const __dirname = dirname(__filename)
 
 const EXIT_SUCCESS = 0
