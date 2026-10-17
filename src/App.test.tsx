@@ -3,6 +3,7 @@ import { type MockModuleContext, after, before, describe, it, mock } from 'node:
 import { render, screen } from '@testing-library/react';
 import assert from 'node:assert';
 import { userEvent } from '@testing-library/user-event';
+import { useTranslationsFake } from './data/useTranslations';
 
 describe('App', () => {
   let translationsMock: MockModuleContext | null = null;
@@ -10,7 +11,7 @@ describe('App', () => {
   before(() => {
     translationsMock = mock.module('./data/useTranslations', {
       namedExports: {
-        useTranslations: () => (key: unknown, params: Record<string, unknown> = {}): string => (`${key} ${Object.values(params).join(' ')}`)
+        useTranslations: useTranslationsFake
       }
     });
   });
