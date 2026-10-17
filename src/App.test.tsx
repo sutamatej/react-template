@@ -1,3 +1,4 @@
+import './__setup/dom.mjs';
 import { type MockModuleContext, after, before, describe, it, mock } from 'node:test';
 import { render, screen } from '@testing-library/react';
 import assert from 'node:assert';
