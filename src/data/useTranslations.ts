@@ -20,7 +20,9 @@ type PartialTranslation = {
   [key in TranslationKey]: string | PartialTranslation;
 };
 
-type TranslationFn = (key: TranslationPath, ...args: (string | number)[]) => string;
+type TranslationParams = Record<string, string | number>;
+
+type TranslationFn = (key: TranslationPath, params?: TranslationParams) => string;
 
 function getTranslation(translations: Translations, selector: TranslationPath): string | null {
   const translationKeys = selector.split('.') as TranslationKey[];
@@ -58,7 +60,7 @@ export function useTranslations(): TranslationFn {
     void fetchTranslations();
   }, [logger]);
 
-  return useCallback((key: TranslationPath, ...args: (string | number)[]) => {
+  return useCallback((key: TranslationPath, params: TranslationParams = {}) => {
     if (!translations) {
       return key;
     }
@@ -68,19 +70,18 @@ export function useTranslations(): TranslationFn {
       return key;
     }
 
-    let index = 0;
-    return translation.replace(/{(\w+)}/g, (match) => {
-      const replacement = args[index++];
+    return translation.replace(/{(\w+)}/g, (match, name: string) => {
+      const replacement = Object.prototype.hasOwnProperty.call(params, name) ? params[name] : undefined;
       if (typeof replacement !== 'undefined') {
         return replacement.toString();
       }
 
-      logger.error('Failed to format translation string', key, translation, args);
+      logger.error('Failed to format translation string', key, translation, params);
       return match;
     });
   }, [translations, logger]);
 }
 
 export function useTranslationsFake() {
-  return (key: TranslationPath, ...args: (string | number)[]): string => (`${key} ${args.join(' ')}`);
+  return (key: TranslationPath, params: TranslationParams = {}): string => (`${key} ${Object.values(params).join(' ')}`);
 }

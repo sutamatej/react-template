@@ -10,7 +10,7 @@ describe('App', () => {
   before(() => {
     translationsMock = mock.module('./data/useTranslations', {
       namedExports: {
-        useTranslations: () => (key: unknown, ...args: unknown[]): string => (`${key} ${args.join(' ')}`)
+        useTranslations: () => (key: unknown, params: Record<string, unknown> = {}): string => (`${key} ${Object.values(params).join(' ')}`)
       }
     });
   });

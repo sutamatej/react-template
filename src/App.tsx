@@ -14,7 +14,7 @@ export function App(): ReactElement {
   return (
     <>
       <button type="button" onClick={onClick}>{t('buttonLabel.text')}</button>
-      <div className={status}>{t('status.label.text', clickedTimes)}</div>
+      <div className={status}>{t('status.label.text', { count: clickedTimes })}</div>
     </>
   );
 }
