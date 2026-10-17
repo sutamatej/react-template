@@ -26,13 +26,9 @@ let { hosts, port } = await buildContext.serve({
 // @FIXME - hosts is hardcoded to the first
 console.log(`Serving the app at ${hosts[0]}:${port}`)
 
-const typecheck = spawn('npx',
+spawn('npx',
   ['tsc', '--watch', '--pretty', '--noEmit', '--preserveWatchOutput'], {
   cwd: './src',
   shell: true,
-  stdio: 'pipe',
-})
-
-typecheck.stdout.on('data', data => {
-  console.log(`${data.toString()}`)
+  stdio: 'inherit',
 })
