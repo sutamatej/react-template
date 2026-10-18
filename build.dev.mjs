@@ -27,7 +27,7 @@ let { hosts, port } = await buildContext.serve({
 console.log(`Serving the app at ${hosts[0]}:${port}`)
 
 spawn('npx',
-  ['tsc', '--watch', '--pretty', '--noEmit', '--preserveWatchOutput'], {
+  ['tsc', '--watch', '--pretty', '--preserveWatchOutput'], {
   cwd: './src',
   shell: true,
   stdio: 'inherit',

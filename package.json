@@ -10,7 +10,7 @@
     "lint:fix": "oxlint --fix",
     "test": "tsx --import=./src/__setup/testSetup.mjs --experimental-test-module-mocks --test \"**/*.test.ts?(x)\"",
     "test:ci": "tsx --import=./src/__setup/testSetup.mjs --experimental-test-module-mocks --test --test-reporter=dot \"**/*.test.ts?(x)\"",
-    "typecheck": "npx tsc --noEmit",
+    "typecheck": "tsc",
     "validate": "npm run typecheck && npm run validate:translations && npm run test:ci && npm run lint",
     "validate:translations": "node ./src/data/locale/validate.mjs"
   },
