@@ -1,6 +1,7 @@
 {
   "name": "react-template",
   "version": "0.0.1",
+  "private": true,
   "description": "Template for creating standalone React applications with Typescript",
   "main": "index.js",
   "scripts": {
