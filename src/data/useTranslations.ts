@@ -46,7 +46,7 @@ export function useTranslations(): TranslationFn {
       // the browser support is not there yet. See
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with
       // @ts-expect-error: We're importing a file that only exists after build/at runtime
-      const { data, error } = await tryAsync<{ default: Translations }>(import('./locale/en-us.js'));
+      const { data, error } = await tryAsync<{ default: Translations }>(() => import('./locale/en-us.js'));
       if (error) {
         logger.error(error);
         setTranslations(null);

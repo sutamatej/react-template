@@ -3,33 +3,39 @@ interface Success<T> {
   error: null;
 }
 
-interface Failure<TError> {
+interface Failure {
   data: null;
-  error: TError;
+  error: Error;
 }
 
-type Result<T, TError = Error> = Success<T> | Failure<TError>;
+type Result<T> = Success<T> | Failure;
 
-export function trySync<T, TError = Error>(
+// Anything can be thrown in JavaScript - wraps values that aren't Errors, keeping them as the cause
+function toError(error: unknown): Error {
+  return error instanceof Error ? error : Object.assign(new Error('A value that is not an Error was thrown'), { cause: error });
+}
+
+export function trySync<T>(
   // oxlint-disable-next-line eslint-plugin-promise/prefer-await-to-callbacks
   callback: () => T
-): Result<T, TError> {
+): Result<T> {
   try {
     // oxlint-disable-next-line eslint-plugin-promise/prefer-await-to-callbacks
     const data = callback();
     return { data, error: null };
   } catch (error) {
-    return { data: null, error: error as TError };
+    return { data: null, error: toError(error) };
   }
 }
 
-export async function tryAsync<T, TError = Error>(
-  promise: Promise<T>
-): Promise<Result<T, TError>> {
+// Takes a function rather than a promise, so errors thrown while creating the promise are caught too
+export async function tryAsync<T>(
+  callback: () => Promise<T>
+): Promise<Result<T>> {
   try {
-    const data = await promise;
+    const data = await callback();
     return { data, error: null };
   } catch (error) {
-    return { data: null, error: error as TError };
+    return { data: null, error: toError(error) };
   }
 }
