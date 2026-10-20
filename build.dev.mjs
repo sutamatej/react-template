@@ -3,7 +3,7 @@
 import { context } from 'esbuild'
 import { spawn } from 'child_process'
 
-let buildContext = await context({
+const buildContext = await context({
   bundle: true,
   entryPoints: [{
     in: './src/index.tsx', out: 'index'
@@ -19,12 +19,15 @@ let buildContext = await context({
 
 await buildContext.watch()
 
-let { hosts, port } = await buildContext.serve({
+const { hosts, port } = await buildContext.serve({
   servedir: 'public',
 })
 
-// @FIXME - hosts is hardcoded to the first
-console.log(`Serving the app at ${hosts[0]}:${port}`)
+console.log('Serving the app at:')
+for (const host of hosts) {
+  // IPv6 addresses need brackets in URLs
+  console.log(`  http://${host.includes(':') ? `[${host}]` : host}:${port}/`)
+}
 
 spawn('npx',
   ['tsc', '--watch', '--pretty', '--preserveWatchOutput'], {
