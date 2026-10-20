@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import type { default as TranslationsJson } from './locale/en-us.json';
 import { tryAsync } from '../utils/try';
-import { useLogger } from '../utils/logger';
+import { logger } from '../utils/logger';
 
 type PathOf<T, K = keyof T> = K extends keyof T & string
   ? (T[K] extends object ? `${K}.${PathOf<T[K]>}` : `${K}`)
@@ -38,7 +38,6 @@ function getTranslation(translations: Translations, selector: TranslationPath): 
 }
 
 export function useTranslations(): TranslationFn {
-  const logger = useLogger();
   const [translations, setTranslations] = useState<Translations | null>(null);
 
   useEffect(() => {
@@ -58,7 +57,7 @@ export function useTranslations(): TranslationFn {
     }
 
     void fetchTranslations();
-  }, [logger]);
+  }, []);
 
   return useCallback((key: TranslationPath, params: TranslationParams = {}) => {
     if (!translations) {
@@ -79,7 +78,7 @@ export function useTranslations(): TranslationFn {
       logger.error('Failed to format translation string', key, translation, params);
       return match;
     });
-  }, [translations, logger]);
+  }, [translations]);
 }
 
 export function useTranslationsFake() {

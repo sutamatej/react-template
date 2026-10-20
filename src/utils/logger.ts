@@ -1,5 +1,4 @@
 /* oxlint-disable no-console */
-import { useMemo } from 'react';
 
 interface Logger {
   error: (...data: unknown[]) => void;
@@ -7,14 +6,9 @@ interface Logger {
   warn: (...data: unknown[]) => void;
 }
 
-export function logger(): Logger {
-  return {
-    error: console.error,
-    log: console.log,
-    warn: console.warn,
-  };
-}
-
-export function useLogger(): Logger {
-  return useMemo(() => logger(), []);
-}
+// Looks console methods up on each call, so console mocks set up later (e.g. in tests) apply
+export const logger: Logger = {
+  error: (...data) => console.error(...data),
+  log: (...data) => console.log(...data),
+  warn: (...data) => console.warn(...data),
+};
