@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { type ReactElement, type ReactNode, createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import type { default as TranslationsJson } from './locale/en-us.json';
 import { tryAsync } from '../utils/try';
@@ -37,7 +37,12 @@ function getTranslation(translations: Translations, selector: TranslationPath): 
   return typeof translation === 'string' ? translation : null;
 }
 
-export function useTranslations(): TranslationFn {
+// null when no TranslationsProvider is mounted above the component
+const TranslationsContext = createContext<TranslationFn | null>(null);
+
+// Loads translations once and shares them, so components mounted after loading
+// get them on their first render instead of showing keys until they load again
+export function TranslationsProvider({ children }: { children?: ReactNode }): ReactElement {
   const [translations, setTranslations] = useState<Translations | null>(null);
 
   useEffect(() => {
@@ -49,7 +54,6 @@ export function useTranslations(): TranslationFn {
       const { data, error } = await tryAsync<{ default: Translations }>(() => import('./locale/en-us.js'));
       if (error) {
         logger.error(error);
-        setTranslations(null);
         return;
       }
 
@@ -59,7 +63,7 @@ export function useTranslations(): TranslationFn {
     void fetchTranslations();
   }, []);
 
-  return useCallback((key: TranslationPath, params: TranslationParams = {}) => {
+  const translate = useCallback((key: TranslationPath, params: TranslationParams = {}) => {
     if (!translations) {
       return key;
     }
@@ -79,6 +83,17 @@ export function useTranslations(): TranslationFn {
       return match;
     });
   }, [translations]);
+
+  return <TranslationsContext value={translate}>{children}</TranslationsContext>;
+}
+
+export function useTranslations(): TranslationFn {
+  const translate = useContext(TranslationsContext);
+  if (!translate) {
+    throw new Error('useTranslations must be used within a TranslationsProvider');
+  }
+
+  return translate;
 }
 
 export function useTranslationsFake() {

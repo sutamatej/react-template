@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 
 import { App } from './App';
+import { TranslationsProvider } from './data/useTranslations';
 
 // live reloading - dev only
 new EventSource('/esbuild').addEventListener('change', () => location.reload());
@@ -12,7 +13,9 @@ if (appElement) {
   const root = createRoot(appElement);
   root.render(
     <StrictMode>
-      <App />
+      <TranslationsProvider>
+        <App />
+      </TranslationsProvider>
     </StrictMode>
   );
 }
